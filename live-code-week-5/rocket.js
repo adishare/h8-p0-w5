@@ -32,24 +32,22 @@ function invokeSpell (input) {
       { q: 2, w: 1, e: 0, spellName: 'Ghost Walk' },
   ];
 
-  var QWE = [0,0,0]
-  for(i=0;i<input.length;i++){
-    if(input[i] == 'q') QWE[0]++
-    if(input[i] == 'w') QWE[1]++
-    if(input[i] == 'e') QWE[2]++
+  var convert = [0,0,0]  
+  for(var i=0;i<input.length;i++){
+    if(input[i] === 'q') convert[0]++
+    if(input[i] === 'w') convert[1]++
+    if(input[i] === 'e') convert[2]++
   }
 
-  var result = ''
-  for(var j=0;j<QWE.length;j++){
-    for(var k=0;k<spells.length;k++){
-      if([spells[k].q,spells[k].w,spells[k].e].join('') == QWE.join('') ){
-        return spells[k].spellName
-      } 
-    }
+  for(var j=0;j<spells.length;j++){
+    if([spells[j].q,spells[j].w,spells[j].e].join('') == convert.join('')){
+      return spells[j].spellName
+    } 
   }
-  return 'Combination does not exist'
+
+  return 'doesnt exist'
 }
-
+  
 console.log(invokeSpell('qwe')); // Deafening Blast
 console.log(invokeSpell('ewq')); // Deafening Blast
 console.log(invokeSpell('qqq')); // Cold Snap
